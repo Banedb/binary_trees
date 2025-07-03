@@ -1,23 +1,5 @@
 #include "binary_trees.h"
 /**
- * bt_leaves_recursive - Counts the number of leaves of a binary tree.
- * @tree: Root node of the tree to be counted.
- * @leaves: number of leaves of tree or sub-tree.
- */
-
-void bt_leaves_recursive(const binary_tree_t *tree, size_t *leaves)
-{
-	if (!tree)
-		return;
-
-	bt_leaves_recursive(tree->left, leaves);
-	bt_leaves_recursive(tree->right, leaves);
-	if (!tree->left && !tree->right)
-		(*leaves)++;
-}
-
-
-/**
  * binary_tree_leaves - Counts the leaves of a binary tree.
  * @tree: Root node of the tree to be counted.
  *
@@ -25,10 +7,12 @@ void bt_leaves_recursive(const binary_tree_t *tree, size_t *leaves)
  */
 size_t binary_tree_leaves(const binary_tree_t *tree)
 {
-	size_t leaves = 0;
+	if (!tree)
+		return (0);
 
-	if (tree)
-		bt_leaves_recursive(tree, &leaves);
+	if (!tree->left && !tree->right)
+		return (1);
 
-	return (leaves);
+	return (binary_tree_leaves(tree->left) +
+		binary_tree_leaves(tree->right));
 }
