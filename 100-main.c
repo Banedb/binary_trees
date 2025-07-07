@@ -18,7 +18,6 @@ void launch_test(binary_tree_t *n1, binary_tree_t *n2)
 		printf("(nil)\n");
 	else
 		printf("%d\n", ancestor->n);
-	
 }
 
 /**
