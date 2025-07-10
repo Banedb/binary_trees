@@ -1,22 +1,16 @@
 #include "binary_trees.h"
 
 /**
- * binary_trees_ancestor - Finds the lowest common ancestor of two nodes.
- * @first: Pointer to the first node.
- * @second: Pointer to the second node.
- *
- * Return: Pointer to the ancestor node || NULL.
+ * binary_tree_levelorder - Traverses a binary tree post-orderly.
+ * @tree: Root node of the tree to traverse.
+ * @func: Pointer to a function to call for each node.
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	const binary_tree_t *ftemp, *stemp;
-
-	if (!first || !second)
+	if (!tree)
 		return (NULL);
 
-	for (ftemp = first; ftemp; ftemp = ftemp->parent)
-		for (stemp = second; stemp; stemp = stemp->parent)
-			if (ftemp == stemp)
-				return ((binary_tree_t *)ftemp);
-	return (NULL);
+	func(tree->n);
+	func(tree->left->n);
+	func(tree->right->n);
 }
